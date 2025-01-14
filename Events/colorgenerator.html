@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="style2.css">
+    <title>Color generator</title>
+</head>
+<body>
+    <div class="container">
+        <div class="clrbtn">
+            <button class="btn1">#f8edeb</button>
+            <button class="btn2">#e8e8e4</button>
+        </div>
+        <h2>Copy your code here</h2>
+        <div class="copycode">
+        background-color: linear-gradient(to right, #f8edeb, #e8e8e4);
+        </div>
+</div>
+<script>
+    const clrbtn1 = document.querySelector('.btn1');
+    const clrbtn2 = document.querySelector('.btn2');
+    const clrdiv = document.querySelector('.copycode');
+    var rgb1= '#000';
+    var rgb2= '#fff';
+   
+    const hexavalues=()=>{
+        const str="0123456789abcdef";
+        let newstr="#"
+        for(let i=0;i<6;i++){
+            newstr+=str[Math.floor(Math.random()*16)];
+        }
+        return newstr;
+    }
+    const handleevent1=()=>{
+        rgb1 = hexavalues();
+        document.body.style.backgroundImage=`linear-gradient(to right,${rgb1},${rgb2})`;
+        clrdiv.textContent=`background-color: linear-gradient(to right,${rgb1},${rgb2})`;
+        clrbtn1.textContent=`${rgb1}`;
+        clrbtn1.style.background = `${rgb1}`;
+    }
+
+    const handleevent2=()=>{
+        rgb2 = hexavalues();
+        document.body.style.backgroundImage=`linear-gradient(to right,${rgb1},${rgb2})`;
+        clrdiv.textContent=`background-color: linear-gradient(to right,${rgb1},${rgb2})`;
+        clrbtn2.textContent=`${rgb2}`;
+        clrbtn2.style.background = `${rgb2}`;
+    }
+
+    clrbtn1.addEventListener('click',handleevent1);
+    clrbtn2.addEventListener('click',handleevent2);
+
+    clrdiv.addEventListener('click',()=>{
+        const copyText = clrdiv.innerText;
+        navigator.clipboard.writeText(copyText);
+    })
+
+
+</script>
+</body>
+</html>
+
